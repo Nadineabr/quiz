@@ -11,6 +11,7 @@
           <div class="quiz__answers" v-for='(answer, index) of questions[questionIndex].answers' :key='answer.index'  @click='chooseAnswer($event, index)'>
             {{ answer.text }}
           </div>
+          <span>{{ questionIndex+1 + ' из ' + questions.length}}</span>
         </div>
         <div class="quiz__result" v-show='finish'>
           <h2>Результаты</h2>
@@ -69,6 +70,7 @@ export default {
       this.finish = false
       this.questionIndex = 0
       this.startTime = Date.now()
+      this.score = 0
     },
     chooseAnswer (e, index) {
       if ((this.questions[this.questionIndex].answers)[index].isCorrect === true) {
